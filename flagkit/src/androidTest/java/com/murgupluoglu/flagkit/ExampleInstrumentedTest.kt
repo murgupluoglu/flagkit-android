@@ -16,9 +16,14 @@ import org.junit.Assert.*
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     @Test
-    fun useAppContext() {
+    fun FlagKit_test() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.murgupluoglu.flagkit.test", appContext.packageName)
+
+        val drawable = FlagKit.getDrawable(appContext, "not_exist")
+        assertNull(drawable)
+
+        val resId = FlagKit.getResId(appContext, "not_exist")
+        assertEquals(0, resId)
     }
 }

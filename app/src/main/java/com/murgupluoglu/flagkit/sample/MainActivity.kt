@@ -21,9 +21,6 @@ class MainActivity : AppCompatActivity() {
             flags.add(FlagModel(it, FlagKit.getResId(this, it)))
         }
 
-        val drawable = FlagKit.getDrawable(this, "not_exist")
-        val resId = FlagKit.getResId(this, "not_exist")
-
         for (locale in Locale.getISOCountries()) {
             //flags.add(FlagModel(locale, FlagKit.getResId(this, locale)))
         }
@@ -31,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         Log.i("flags", flags.toString())
         Log.i("flags", flags.size.toString())
 
+        val notFound = flags.filter { it.resourceId == 0 }
+        flags.add(0, FlagModel("Total Flags: ${flags.size}\n Not Found: ${notFound.size} - ${notFound.map { it.name }}", 0))
 
         LastAdapter(flags, BR.item)
                 .map<FlagModel>(

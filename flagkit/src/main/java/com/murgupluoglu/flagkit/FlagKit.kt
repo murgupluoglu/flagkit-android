@@ -19,13 +19,13 @@ object FlagKit {
         return context.resources.getIdentifier(fixResId(flagName), "drawable", context.packageName)
     }
 
-    fun getDrawable(context: Context, flagName: String): Drawable {
+    fun getDrawable(context: Context, flagName: String): Drawable? {
         val resourceId =
             context.resources.getIdentifier(fixResId(flagName), "drawable", context.packageName)
         return try {
             ContextCompat.getDrawable(context, resourceId)!!
         } catch (e: Resources.NotFoundException) {
-            ShapeDrawable(OvalShape())
+            null
         }
     }
 
