@@ -1,43 +1,39 @@
-![Header](Header.png)
-
 <div align="center">
-<a href="https://travis-ci.org/madebybowtie/FlagKit" target="_blank">
-<img src="http://img.shields.io/travis/madebybowtie/FlagKit.svg?style=flat" />
-</a>
-
-<a href="https://github.com/Carthage/Carthage" target="_blank">
-<img src="https://img.shields.io/badge/Carthage-Compatible-brightgreen.svg?style=flat" />
-</a>
-
-<a href="https://cocoapods.org/pods/FlagKit" target="_blank">
-<img src="https://img.shields.io/cocoapods/v/FlagKit.svg?style=flat" />
+<a href="https://jitpack.io/#murgupluoglu/flagkit-android" target="_blank">
+<img src="https://jitpack.io/v/murgupluoglu/flagkit-android.svg" />
 </a>
 </div>
 
 # FlagKit
 
-Beautiful flag icons for usage in apps and on the web. All flags are provided as stand-alone PNG and SVG files. FlagKit also provides an Asset Catalog and framework for easy use on Apple platforms.
+Beautiful flag icons for usage in Android apps. All flags are provided as VectorDrawable. FlagKit copy from this [iOS library](https://github.com/madebybowtie/FlagKit).
 
-## Installation (iOS, macOS, tvOS)
+# Installation
 
-FlagKit provides a framework for easy installation as a dependency. You can also manually copy the Asset Catalog into your project.
+```gradle
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 
-### Carthage
-Add the following line to your `Cartfile`:
-
-```
-github "madebybowtie/FlagKit"
-```
-
-### CocoaPods
-Add the following line to your `Podfile`:
-
-```
-pod 'FlagKit'
+dependencies {
+    implementation 'com.github.murgupluoglu:flagkit-android:lastVersion'
+}
 ```
 
-### Manual
-Add `Assets/FlagKit.xcassets` to your target.
+# Usage
+
+```kotlin
+val resourceId = FlagKit.getResId(context, "tr")
+
+ImageView.setImageResource(resourceId)
+
+val drawable = FlagKit.getDrawable(this, "tr")
+
+ImageView.setImageDrawable(drawable)
+```
 
 ## Usage (iOS, macOS, tvOS)
 FlagKit provides both rectangular unstyled flags and styled flags in a variety of shapes. Our [sample project](Sources/Swift/FlagKitDemo-iOS) demonstrates how to display flags and customize them into different shapes (rounded corners, square, circle).
@@ -67,13 +63,4 @@ let originalImage = UIImage(named: countryCode, in: bundle, compatibleWith: nil)
 
 ## Reference
 
-FlagKit provides over 250 flags. A list of all flags can be [found here](Assets/Flags.md).
-
-## More Info
-
-Have a question? Please [open an issue](https://github.com/madebybowtie/FlagKit/issues/new)!
-
-## License
-
-FlagKit is released under the MIT license. See
-[LICENSE](https://github.com/madebybowtie/FlagKit/blob/master/LICENSE).
+FlagKit provides over 249 flags. A list of all flags can be [found here](Flags.md).
