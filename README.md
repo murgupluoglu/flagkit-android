@@ -33,6 +33,8 @@ ImageView.setImageResource(resourceId)
 val drawable = FlagKit.getDrawable(this, "tr")
 
 ImageView.setImageDrawable(drawable)
+
+val all = FlagKit.getAllAvailableCodes()
 ```
 
 ## Reference
