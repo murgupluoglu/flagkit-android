@@ -3,7 +3,7 @@ This set currently includes the 255 flags below:
 
 | Flag | Code | Region |
 | :-------------: | :-------------: | ------------- |
-| <img src='other_files/SVG/ad.svg' width='21' height='15'> | AD | Andorra
+| <img src='other_files/SVG/AD.svg' width='21' height='15'> | AD | Andorra
 | <img src='PNG/AE@2x.png?raw=true' width='21' height='15'> | AE | United Arab Emirates
 | <img src='PNG/AF@2x.png?raw=true' width='21' height='15'> | AF | Afghanistan
 | <img src='PNG/AG@2x.png?raw=true' width='21' height='15'> | AG | Antigua & Barbuda
