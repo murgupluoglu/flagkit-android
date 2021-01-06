@@ -1,5 +1,5 @@
 # Flags
-This set currently includes the 255 flags below:
+This set currently includes the 254 flags below:
 
 | Flag | Code | Region |
 | :-------------: | :-------------: | ------------- |

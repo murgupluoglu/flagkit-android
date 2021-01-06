@@ -18,14 +18,14 @@ class MainActivity : AppCompatActivity() {
 
         val flags = arrayListOf<FlagModel>()
         FlagKit.getAllAvailableCodes().forEach {
-            //flags.add(FlagModel(it, FlagKit.getResId(this, it)))
+            flags.add(FlagModel(it, FlagKit.getResId(this, it)))
         }
 
         val drawable = FlagKit.getDrawable(this, "not_exist")
         val resId = FlagKit.getResId(this, "not_exist")
 
         for (locale in Locale.getISOCountries()) {
-            flags.add(FlagModel(locale, FlagKit.getResId(this, locale)))
+            //flags.add(FlagModel(locale, FlagKit.getResId(this, locale)))
         }
 
         Log.i("flags", flags.toString())
