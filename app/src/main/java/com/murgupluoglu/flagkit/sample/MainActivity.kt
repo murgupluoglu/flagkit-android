@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val drawable = FlagKit.getDrawable(this, "not_exist")
+        val resId = FlagKit.getResId(this, "not_exist")
 
         for (locale in Locale.getISOCountries()) {
             flags.add(FlagModel(locale, FlagKit.getResId(this, locale)))
