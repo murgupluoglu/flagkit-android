@@ -6,7 +6,7 @@
 
 # FlagKit
 
-Beautiful flag icons for usage in Android apps. All flags are provided as VectorDrawable. FlagKit copy from this [iOS library](https://github.com/madebybowtie/FlagKit).
+Beautiful country flag icons for usage in Android apps. All flags are provided as VectorDrawable. FlagKit copy from this [iOS library](https://github.com/madebybowtie/FlagKit).
 
 # Installation
 
