@@ -29,20 +29,26 @@ class MainActivity : AppCompatActivity() {
         Log.i("flags", flags.size.toString())
 
         val notFound = flags.filter { it.resourceId == 0 }
-        flags.add(0, FlagModel("Total Flags: ${flags.size}\n Not Found: ${notFound.size} - ${notFound.map { it.name }}", 0))
+        flags.add(
+            0,
+            FlagModel(
+                "Total Flags: ${flags.size}\n Not Found: ${notFound.size} - ${notFound.map { it.name }}",
+                0
+            )
+        )
 
         LastAdapter(flags, BR.item)
-                .map<FlagModel>(
-                        Type<ItemFlagBinding>(R.layout.item_flag)
-                                .onBind {
-                                    val item = it.binding.item!!
-                                    it.binding.apply {
-                                        flagImageView.setImageResource(item.resourceId)
-                                        nameTextView.text = item.name
-                                    }
-                                }
+            .map<FlagModel>(
+                Type<ItemFlagBinding>(R.layout.item_flag)
+                    .onBind {
+                        val item = it.binding.item!!
+                        it.binding.apply {
+                            flagImageView.setImageResource(item.resourceId)
+                            nameTextView.text = item.name
+                        }
+                    }
 
-                )
-                .into(findViewById(R.id.recyclerView))
+            )
+            .into(findViewById(R.id.recyclerView))
     }
 }

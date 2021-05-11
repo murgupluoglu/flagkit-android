@@ -2,8 +2,7 @@ package com.murgupluoglu.flagkit
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -16,7 +15,7 @@ import org.junit.runner.RunWith
 class ExampleInstrumentedTest {
     @Test
     fun FlagKit_test() {
-        // Context of the app under test.
+
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
         val drawable = FlagKit.getDrawable(appContext, "not_exist")
@@ -24,5 +23,9 @@ class ExampleInstrumentedTest {
 
         val resId = FlagKit.getResId(appContext, "not_exist")
         assertEquals(0, resId)
+
+        val doFlag = FlagKit.getDrawable(appContext, "do")
+        assertNotNull(doFlag)
+
     }
 }
