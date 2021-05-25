@@ -28,7 +28,7 @@ object FlagKit {
     }
 
     private fun fixResId(resId: String): String {
-        var resourceId = resId.toLowerCase(Locale.ENGLISH)
+        var resourceId = resId.lowercase(Locale.ENGLISH)
 
         //do is not a valid resource name (reserved Java keyword)
         if (resourceId == "do") {

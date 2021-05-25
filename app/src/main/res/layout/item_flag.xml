@@ -37,5 +37,6 @@
             app:layout_constraintStart_toEndOf="@+id/flagImageView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="tr" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
