@@ -144,7 +144,6 @@ object FlagKit {
             "hu",
             "id",
             "ie",
-            "il",
             "im",
             "in",
             "io",
