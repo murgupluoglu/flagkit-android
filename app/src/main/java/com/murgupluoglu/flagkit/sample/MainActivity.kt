@@ -1,12 +1,11 @@
 package com.murgupluoglu.flagkit.sample
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.murgupluoglu.flagkit.FlagKit
+import com.murgupluoglu.flagkit.FlagModel
 import com.murgupluoglu.flagkit.sample.ui.theme.FlagKitTheme
 import java.util.Locale
 
@@ -33,11 +33,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        printInfo()
-
-        val flags = arrayListOf<FlagModel>()
+        val flags = arrayListOf<FlagUIModel>()
         FlagKit.getAllAvailableCodes().forEach {
-            flags.add(FlagModel(it, FlagKit.getResId(this, it)))
+            flags.add(
+                FlagUIModel(
+                    alpha2Code = it.alpha2Code,
+                    resourceId = it.resourceId,
+                    countryName = Locale.forLanguageTag("${it.alpha2Code}-${it.alpha2Code}").displayCountry
+                )
+            )
+        }
+        val notFound = arrayListOf<FlagModel>()
+        for (locale in Locale.getISOCountries()) {
+            val resourceId = FlagKit.getResId(locale)
+            if (resourceId == com.murgupluoglu.flagkit.R.drawable.unknown_flag) {
+                notFound.add(FlagModel(locale, resourceId))
+            }
         }
 
         setContent {
@@ -45,9 +56,24 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     LazyColumn(Modifier.padding(innerPadding)) {
                         item {
-                            Text(
-                                modifier = Modifier.padding(start = 24.dp),
-                                text = "Total flags: ${flags.size}"
+                            Column {
+                                Text(
+                                    modifier = Modifier.padding(start = 24.dp),
+                                    text = "Total flags: ${flags.size}"
+                                )
+                                Text(
+                                    modifier = Modifier.padding(start = 24.dp),
+                                    text = "Not found flags: ${notFound.map { it.alpha2Code }}"
+                                )
+                            }
+                        }
+                        item {
+                            ItemView(
+                                FlagUIModel(
+                                    "xx",
+                                    com.murgupluoglu.flagkit.R.drawable.unknown_flag,
+                                    "Unknown"
+                                )
                             )
                         }
                         items(flags.size) { index ->
@@ -61,26 +87,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-private fun Context.printInfo() {
-    val infos = arrayListOf<FlagModel>()
-    for (locale in Locale.getISOCountries()) {
-        infos.add(FlagModel(locale, FlagKit.getResId(this, locale)))
-    }
-    FlagKit.getAllAvailableCodes().forEach {
-        if (Locale.getISOCountries().contains(it.uppercase()).not()) {
-            Log.i("INFO", "Not exist $it")
-        }
-    }
-    val notFound = infos.filter { it.resourceId == 0 }
-    Log.i(
-        "INFO",
-        "Total Flags: ${infos.size}\n Not Found: ${notFound.size} - ${notFound.map { it.name }}"
-    )
-}
-
 @Composable
 private fun ItemView(
-    item: FlagModel
+    item: FlagUIModel
 ) {
     Card(
         modifier = Modifier
@@ -99,10 +108,12 @@ private fun ItemView(
                     .padding(start = 20.dp)
                     .size(50.dp),
                 painter = painterResource(id = item.resourceId),
-                contentDescription = item.name
+                contentDescription = item.alpha2Code
             )
             Spacer(modifier = Modifier.width(20.dp))
-            Text(text = item.name)
+            Text(text = item.alpha2Code)
+            Spacer(modifier = Modifier.width(20.dp))
+            Text(text = item.countryName)
         }
     }
 }
@@ -111,6 +122,11 @@ private fun ItemView(
 @Composable
 private fun ItemViewPreview() {
     ItemView(
-        FlagModel("tr", com.murgupluoglu.flagkit.R.drawable.tr)
+        FlagUIModel(
+            alpha2Code = "tr",
+            resourceId = com.murgupluoglu.flagkit.R.drawable.tr_flag,
+            countryName = "Türkiye"
+
+        )
     )
 }

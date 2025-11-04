@@ -47,7 +47,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.murgupluoglu"
             artifactId = "flagkit-android"
-            version = "1.0.5"
+            version = "1.2.0"
 
             afterEvaluate {
                 from(components["release"])

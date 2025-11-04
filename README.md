@@ -26,13 +26,11 @@ dependencies {
 # Usage
 
 ```kotlin
-val resourceId = FlagKit.getResId(context, "tr")
+val resourceId = FlagKit.getResId("tr")
 
-ImageView.setImageResource(resourceId)
-
-val drawable = FlagKit.getDrawable(this, "tr")
-
-ImageView.setImageDrawable(drawable)
+Image(
+    painter = painterResource(id = resourceId)
+)
 
 val all = FlagKit.getAllAvailableCodes()
 ```
