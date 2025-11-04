@@ -37,4 +37,4 @@ val all = FlagKit.getAllAvailableCodes()
 
 ## Reference
 
-FlagKit provides over 249 flags. A list of all flags can be [found here](Flags.md).
+FlagKit provides over 259 flags. A list of all flags can be [found here](Flags.md).
